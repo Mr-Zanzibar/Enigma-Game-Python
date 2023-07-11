@@ -1,6 +1,6 @@
 # TO DO:
-# create a logic to see and send messages between users.
-# improve (a lot) the recognition of various operating systems (has no sense now).
+# create a valid logic to see and recive messages between users.
+# improve (a lot) the recognition of various operating systems.
 import bcrypt
 from cryptography.fernet import Fernet
 import datetime
@@ -82,54 +82,20 @@ def run_as_admin():
 
 
 def show_credits():
-    webbrowser.open("https://github.com/Mr-Zanzibar/Enigma-Game-Python")
+    webbrowser.open("https://example.com/credits")
 
 
-def check_windows_version():
-    supported_versions = ["10", "11"]
-    windows_version = platform.win32_ver()[0]
-    major_version = windows_version.split('.')[0]
-    if major_version in supported_versions:
-        return True
-    else:
-        return False
+def check_supported_os():
+    supported_os = ["Windows", "Darwin"]
+    current_os = platform.system()
 
-
-def check_mac_version():
-    supported_versions = ["12"]
-    mac_version = platform.mac_ver()[0]
-    major_version = mac_version.split('.')[1]
-    if major_version in supported_versions:
-        return True
-    else:
-        return False
-
-
-def check_linux_version():
-    supported_distributions = ["kali", "Kali Purple"]
-    linux_distribution = platform.linux_distribution()[0]
-    if linux_distribution.lower() in supported_distributions:
-        return True
-    else:
-        return False
+    if current_os not in supported_os:
+        print("Unsupported operating system.")
+        sys.exit(1)
 
 
 def main():
-    if platform.system() == "Windows":
-        if not check_windows_version():
-            print("The program is only supported on Windows 10 and 11.")
-            sys.exit(1)
-    elif platform.system() == "Darwin":
-        if not check_mac_version():
-            print("The program is only supported on macOS 12 (Monterey).")
-            sys.exit(1)
-    elif platform.system() == "Linux":
-        if not check_linux_version():
-            print("The program is only supported on Kali Linux and Kali Purple.")
-            sys.exit(1)
-    else:
-        print("Unsupported operating system.")
-        sys.exit(1)
+    check_supported_os()
 
     enigma = EnigmaMessaging()
 
@@ -161,13 +127,16 @@ def main():
             recipient = input("Enter recipient's username: ")
             message = input("Enter message: ")
 
+            # Encrypt the message
             encrypted_message = enigma.encrypt_message(message)
-            # Logic to send the encrypted message to the recipient
+
+            # Send the encrypted message to the recipient
+            send_message(recipient, encrypted_message)
+
             print("Encrypted message sent to the recipient.")
 
         elif choice == "2":
-            # Logic to retrieve received messages for the user
-            # Decrypt and display the messages
+            print("Viewing received messages is not supported on this operating system.")
 
         elif choice == "3":
             show_credits()
