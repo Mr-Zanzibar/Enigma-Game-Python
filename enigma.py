@@ -1,5 +1,5 @@
 # TO DO:
-# create a valid logic to see and recive messages between users.
+# create a better logic to see and recive and send messages between users.
 # improve (a lot) the recognition of various operating systems.
 import bcrypt
 from cryptography.fernet import Fernet
