@@ -82,7 +82,7 @@ def run_as_admin():
 
 
 def show_credits():
-    webbrowser.open("https://example.com/credits")
+    webbrowser.open("")
 
 
 def check_supported_os():
