@@ -1,6 +1,6 @@
 # TO DO:
 # create a logic to see and send messages between users.
-# improve (a lot) the recognition of various operating systems.
+# improve (a lot) the recognition of various operating systems (has no sense now).
 import bcrypt
 from cryptography.fernet import Fernet
 import datetime
